@@ -1,5 +1,3 @@
-# Simple Chat App
+# Pop
 
-A starter kit for building a socket.io based chat app with your frontend framwork of choice.
-
-Comes with an example client written in jQuery.
+A work-in-progress multi-player game built using Node & Socket.io. Pop bubbles to paint the Screen in your Colour. Most Colour Wins.
