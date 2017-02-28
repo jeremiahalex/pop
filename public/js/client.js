@@ -103,6 +103,18 @@ $(function () {
   }
 
   function endGame () {
+    $('#players').empty()
+    $('#balloons').empty()
+    $('#turnDelay').empty()
+    gameInfo = {
+      id: -1,
+      name: '',
+      balloons: [],
+      turnDelay: 0
+    }
+    players = []
+    delayCounter = 0
+    if (delayInterval) stopInterval(delayInterval)
   }
   function updatePlayerList () {
     $('#players').empty()
@@ -118,7 +130,6 @@ $(function () {
     })
   }
   function updateBalloons () {
-    // $('#balloons').empty()
     gameInfo.balloons.forEach(function (b, i) {
       // each balloon has an id, so first we try to find it onscreen
       var elem = $('#balloons #balloon' + b.id)
@@ -143,30 +154,12 @@ $(function () {
       elem.css('left', Math.round(width * b.x) - radiusScaled)
       elem.css('top', Math.round(height * b.y) - radiusScaled)
 
-      // elem.text('x: ' +  elem.css('left') + ' y: ' +  elem.css('top') )
       if (b.popped) {
-        // TODO. add a pop state/animation
         elem.css('background-color', b.color)
-        if ( b.lifespan ) {
-          console.log('b.lifespan', b.lifespan)
+        if (b.lifespan) {
           elem.css('opacity', b.lifespan)
         }
       }
     })
   }
-// // handle form submission for sending a message
-// $('#MessageForm').submit(function (event) {
-//   var msg = $('#MessageForm input').val()
-//   if (msg.length === 0) return false
-//
-//   $('#MessageForm input').val('')
-//   console.log('Sending message: ', msg)
-//   socket.emit('chat', msg)
-//
-//   // attach clients own message in a different style
-//   $('#messages').prepend($('<div class="alert alert-info text-right">').text(msg))
-//
-//   // halt default form behaviour
-//   return false
-// })
 })
